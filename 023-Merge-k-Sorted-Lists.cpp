@@ -6,7 +6,7 @@
  *     struct ListNode *next;
  * };
  */
- 
+//Solution 1 
 struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) 
 {
     struct ListNode *p;
@@ -71,3 +71,56 @@ struct ListNode* mergeKLists(struct ListNode** lists, int listsSize)
     
     return lists[0];
 }
+
+
+//Solution 2
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        
+        if (lists.empty()) {
+            return nullptr;
+        }
+        
+        priority_queue<ListNode *, vector<ListNode *>, Comparator> queue;
+        
+        for (auto l : lists) {
+            if (l != nullptr) {
+                queue.push(l);
+            }
+        }
+
+        if (queue.empty()) {
+            return nullptr;
+        }
+        
+        ListNode *res = queue.top();
+        queue.pop();
+        
+        if (res->next != nullptr) {
+            queue.push(res->next);
+        }
+        
+        ListNode *t = res;
+        
+        while (!queue.empty()) {
+            t->next = queue.top();
+            queue.pop();
+            
+            t = t->next;
+            
+            if (t->next != nullptr) {
+                queue.push(t->next);
+            }
+        }
+        
+        return res;
+    }
+    
+private:
+    struct Comparator {
+        bool operator() (ListNode *a, ListNode *b) {
+            return a->val > b->val;
+        }
+    };
+};
