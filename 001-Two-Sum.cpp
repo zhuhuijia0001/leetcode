@@ -2,8 +2,7 @@
 //Solution 1
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) 
-    {
+    vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> mymap;
         unordered_map<int, int>::iterator mapitr;
         
