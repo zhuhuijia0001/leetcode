@@ -8,8 +8,7 @@ public:
         
         vector<int> vec_index;
         
-        for (vector<int>::iterator itr = nums.begin(); itr != nums.end(); ++itr)
-        {
+        for (vector<int>::iterator itr = nums.begin(); itr != nums.end(); ++itr) {
             mapitr = mymap.find(target - *itr);
             if (mapitr != mymap.end())
             {
